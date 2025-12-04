@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class Main {
     
-    
+    // this is a test for git hub 
 
     public static void main(String[] args) {
        
