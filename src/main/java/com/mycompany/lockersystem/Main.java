@@ -22,32 +22,38 @@ public class Main {
         
         system.loadUsersFromFile("users.txt"); // here is the input file 
         ReportSystemController reportController = new ReportSystemController(system);// create Report controller to use later 
-
-        System.out.println("=== Login ===");// login interface 
-
-        System.out.print("Enter ID: ");
-        String id = in.nextLine();
-
-        System.out.print("Enter Password: ");
-        String pw = in.nextLine();
-
-        User logged = system.login(id, pw);
-
-        if (logged == null) {
-             System.out.println("Invalid username or password!");
-             return;
-        }
-
-        System.out.println("Welcome, " + logged.getRole());
-
-        // opening a list based on the role 
-        if (logged.getRole().equals("STUDENT")) {
-              studentMenu(in, system, (Student) logged);
-        } 
-        else {
-              staffMenu(in, system, reportController);
+        
+        System.out.println("=== Locker Reservation System ===");
+        
+        while(true){
+            System.out.println("=== Login ===");// login interface 
+            
+            System.out.print("Enter ID(0 to exit): ");
+            String id = in.nextLine();
+            if (id.equals("0")) {
+                System.out.println("Exiting system...");
+                break;
+            } 
+            System.out.print("Enter Password: ");
+            String pw = in.nextLine();
+            
+            User logged = system.login(id, pw);
+            
+            if (logged == null ) {
+             System.out.println("Invalid username or password! try again ");
+             continue;
             }
             
+            System.out.println("Welcome, " + logged.getRole());
+         
+            // opening a list based on the role 
+            if (logged.getRole().equals("STUDENT")) {
+              studentMenu(in, system, (Student) logged);
+             } 
+            else {
+              staffMenu(in, system, reportController);
+            }
+        }
     }
     
     private static void studentMenu(Scanner in, LockerSystem system, Student student) {
@@ -76,7 +82,7 @@ public class Main {
                 boolean success = system.reserveLocker(lId, student); 
                 if (success) System.out.println("Reservation Confirmed!");// although it's full in the run it's still reserve *
                 
-            } else {
+            } else {//
                 break;
             }
         }

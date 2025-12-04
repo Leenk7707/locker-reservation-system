@@ -31,8 +31,8 @@ public class LockerSystemTest {
         special = new Student("2303333", "pass3", "Engineering");
         special.setSpecialNeeds(true);
 
-        // admin
-        admin = new Staff("admin", "admin123");
+        // admin 
+        admin = new Staff("admin", "admin123");// اراجع 
 
         system.addUser(normal1);
         system.addUser(normal2);
