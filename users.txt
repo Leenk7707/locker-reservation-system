@@ -1,0 +1,6 @@
+S,2301234,pass123,Engineering,Y
+S,2305555,hello55,IT,N
+S,2208888,abc987,Medicine,Y
+
+T,9000001,admin1
+T,9000002,staff22
