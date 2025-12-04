@@ -66,7 +66,7 @@ public class Main {
             in.nextLine();
 
             if (choice == 1) {
-                var list = system.viewAvailableLockers(student.getCollege());// to view Available Lockers only *
+                var list = system.viewAvailableLockers(student);// to view Available Lockers only *
                 
 
                 if (list.isEmpty()) 
@@ -82,7 +82,7 @@ public class Main {
                 boolean success = system.reserveLocker(lId, student); 
                 if (success) System.out.println("Reservation Confirmed!");// although it's full in the run it's still reserve *
                 
-            } else {//
+            } else {
                 break;
             }
         }
@@ -103,7 +103,7 @@ public class Main {
                 System.out.print("ID: "); int id = in.nextInt(); in.nextLine(); // 2358947
                 System.out.print("College: "); String col = in.nextLine(); // IT
                 System.out.print("Location: "); String loc = in.nextLine(); //buiding a*
-                system.addLocker(id, col, loc);
+                system.addLocker(id, col);
                 
             } else if (choice == 2) {
                 System.out.print("Locker number to remove: ");
@@ -113,7 +113,7 @@ public class Main {
             } else if (choice == 3) {
                 System.out.println(report.viewAndGenerateReports());// it does not recall correctey* 
             } else {
-                break;// is it correct ? 
+                break;
             }
         }
     }

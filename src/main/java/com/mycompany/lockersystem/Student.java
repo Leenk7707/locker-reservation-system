@@ -21,8 +21,14 @@ public class Student extends User {
     }
 
     public String getCollege() { return college; }
-    public boolean hasReservation() { return hasReservation; }
-    public void setHasReservation(boolean status) { this.hasReservation = status; }
+    
+    public boolean hasReservation() { 
+        return hasReservation;
+    }
+    
+    public void setHasReservation(boolean status) { 
+        this.hasReservation = status;
+    }
     
 
 public void setSpecialNeeds(boolean val) {

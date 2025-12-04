@@ -13,18 +13,47 @@ public class LockerSystem {
     private List<User> users = new ArrayList<>();
 
     
-        public LockerSystem(int totalLockers) {
+        /**public LockerSystem(int totalLockers) { will be deleted 
         for (int i = 1; i <= totalLockers; i++) {
             lockers.add(new Locker(i));
         }
-    }  
+    }  */ 
+    ///////////////////////////////////////
+    ///
+    public LockerSystem(int totalLockers) {
+        this.lockers = new ArrayList<>();
+        this.users = new ArrayList<>();
+
+    
+        int lockersPerCollege = totalLockers / 3; // divid total number of Lockers into 3 colleges for example 
+
+        for (int i = 1; i <= totalLockers; i++) {
+
+            if (i <= lockersPerCollege) {
+                lockers.add(new Locker(i, "Engineering"));
+            }
+            else if (i <= lockersPerCollege * 2) {
+                lockers.add(new Locker(i, "IT"));
+            }
+            else {
+                lockers.add(new Locker(i, "Medicine"));
+            }
+        }
+    }
+
+
 
     public boolean reserveLocker(int lockerId, Student student) {
         
+        
+        
         // if the student is a special case prioritize their reservation 
         if(student.isSpecialNeeds()){
+            
             for(Locker locker : lockers){
-                if(locker.getId() == lockerId && !locker.isReserved()){
+                
+                if(locker.getId() == lockerId && !locker.isReserved()&& locker.getCollege().equals(student.getCollege())){
+                    
                     locker.reserve(student.getId());
                     student.setHasReservation(true);
                     writeOutput("Special Needs Student " + student.getId() + " reserved Locker " + lockerId);
@@ -35,17 +64,22 @@ public class LockerSystem {
             return false;  
         }
         
-        // if the student is not => check if their any tudent with special needs
+        // Check if ANY special needs student still has priority
         for(User u : users){
+            
             if (u instanceof Student ss && ss.isSpecialNeeds() && !ss.hasReservation()) {
+                
                  System.out.println("Priority reserved for special needs student. You cannot reserve now.");
                  return false;
              }
             
         }
         
+        // for normal students 
         for (Locker locker : lockers) {
-            if (locker.getId() == lockerId && !locker.isReserved()) {
+            
+            if (locker.getId() == lockerId && !locker.isReserved() && locker.getCollege().equals(student.getCollege())) {
+                
                 locker.reserve(student.getId());
                 student.setHasReservation(true);
                 writeOutput("Student " + student.getId() + " reserved Locker " + lockerId);
@@ -56,22 +90,24 @@ public class LockerSystem {
     return false;
     }
     
-    public List<Locker> viewAvailableLockers() {
+    /**public List<Locker> viewAvailableLockers() { will be deleted 
     List<Locker> available = new ArrayList<>();
     for (Locker locker : lockers) {
-        if (!locker.isReserved()) {
+        if (!locker.isReserved()&& locker.getCollege().equals(student.getCollege())) {
             available.add(locker);
         }
     }
     return available;
-}
+}*/
 
 
-    public List<Locker> viewAvailableLockers(String college) {
+    public List<Locker> viewAvailableLockers(Student student) {
         
         List<Locker> available = new ArrayList<>();
+        
         for (Locker locker : lockers) {
-            if (!locker.isReserved() && college.equals(locker.getCollege())) {
+            
+            if (!locker.isReserved() && locker.getCollege().equals(student.getCollege())) {
                 available.add(locker);
             }
         }
@@ -88,14 +124,14 @@ public class LockerSystem {
         }
     }
     
-    public void addLocker(int id, String college, String location) {
+    public void addLocker(int id, String college) {
         for (Locker l : lockers) {
             if (l.getId() == id) {
                 System.out.println("Error: Locker ID already exists!");
                 return;
             }
         }
-        lockers.add(new Locker(id, college, location));
+        lockers.add(new Locker(id, college));
         System.out.println("Success: Locker " + id + " added.");
         saveData();
     }

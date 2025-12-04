@@ -6,22 +6,25 @@ public class Locker {
     private String reservedBy; // only ID 
     
     private String college;
-    private String location;
+   
 
-    public Locker(int id) {
+    /**public Locker(int id) {
         this.id = id;
         this.isReserved = false;
         this.reservedBy = null;
         this.college = null;
-        this.location = null;
-    }
+        
+    }*/
     
-    public Locker(int id, String college, String location) {
+    public Locker(int id, String college) {
         this.id = id;
         this.college = college;
-        this.location = location;
         this.isReserved = false;
         this.reservedBy = null;
+    }
+
+    Locker(int i) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     public int getId() {
@@ -40,13 +43,15 @@ public class Locker {
         return college;
     }
 
-    public String getLocation() {
-        return location;
-    }
-
     public void reserve(String user) {
         this.isReserved = true;
         this.reservedBy = user;
     }
+    
+    @Override
+public String toString() {
+    return "Locker " + id + " | College: " + college + " | Reserved: " + isReserved;
+}
+
     
 }
