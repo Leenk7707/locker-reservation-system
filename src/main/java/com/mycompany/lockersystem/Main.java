@@ -11,8 +11,7 @@ import java.util.Scanner;
 //or any ID and Password from Input file 
 
 public class Main {
-    
-    // this is a test for git hub TEST CHECK
+   
 
     public static void main(String[] args) {
        

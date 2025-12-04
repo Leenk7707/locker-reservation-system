@@ -7,14 +7,6 @@ public class Locker {
     
     private String college;
    
-
-    /**public Locker(int id) {
-        this.id = id;
-        this.isReserved = false;
-        this.reservedBy = null;
-        this.college = null;
-        
-    }*/
     
     public Locker(int id, String college) {
         this.id = id;

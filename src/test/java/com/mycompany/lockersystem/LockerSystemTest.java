@@ -32,7 +32,7 @@ public class LockerSystemTest {
         special.setSpecialNeeds(true);
 
         // admin 
-        admin = new Staff("admin", "admin123");// اراجع 
+        admin = new Staff("admin", "admin123");
 
         system.addUser(normal1);
         system.addUser(normal2);
@@ -77,5 +77,12 @@ public class LockerSystemTest {
         // now normal student can reserve
         boolean result = system.reserveLocker(2, normal1);
          assertTrue(result, "Normal student should reserve once special needs already has a locker");
+    }
+    
+    @Test
+    public void testAdminLoginSuccess() {
+        User user = system.login("admin", "admin123");
+        assertNotNull(user, "Admin login returned null");
+        assertTrue(user instanceof Staff, "Logged in user must be of type Staff");
     }
 }

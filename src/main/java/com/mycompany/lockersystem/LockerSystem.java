@@ -13,13 +13,6 @@ public class LockerSystem {
     private List<User> users = new ArrayList<>();
 
     
-        /**public LockerSystem(int totalLockers) { will be deleted 
-        for (int i = 1; i <= totalLockers; i++) {
-            lockers.add(new Locker(i));
-        }
-    }  */ 
-    ///////////////////////////////////////
-    ///
     public LockerSystem(int totalLockers) {
         this.lockers = new ArrayList<>();
         this.users = new ArrayList<>();
@@ -90,15 +83,6 @@ public class LockerSystem {
     return false;
     }
     
-    /**public List<Locker> viewAvailableLockers() { will be deleted 
-    List<Locker> available = new ArrayList<>();
-    for (Locker locker : lockers) {
-        if (!locker.isReserved()&& locker.getCollege().equals(student.getCollege())) {
-            available.add(locker);
-        }
-    }
-    return available;
-}*/
 
 
     public List<Locker> viewAvailableLockers(Student student) {
@@ -240,8 +224,5 @@ private void writeOutput(String text) {
     }
 }
 
-
-
-    
 }
 
